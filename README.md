@@ -1,6 +1,6 @@
 # Unity 遊戲製作實況：悠太跑酷趣
 
-![Introduce.mp4](Introduce.mp4)
+![introduce.mp4](introduce.mp4)
 
 一個在突發實況中所成立的專案，會慢慢地增進功能來讓這個遊戲完善。
 
@@ -19,12 +19,6 @@
 - [UniRx](https://github.com/neuecc/UniRx)
 - [UniVRM](https://github.com/vrm-c/UniVRM)
 - [VRMLoaderUI](https://github.com/m2wasabi/VRMLoaderUI)
-
-### 素材提供（未上傳，需自行找素材替代或自行去下載）
-- 肉：[猫島羽依老師](https://twitter.com/NekosimaYui)
-- 烤肉音效：[Freesound](https://freesound.org/)
-- 背景音樂與音效：[魔王魂](https://maou.audio/)
-- 字體：[Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 
 ## 作者
 - [悠太翼 @YuutaTsubasa](http://yutaii.run/twitter)

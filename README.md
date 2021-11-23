@@ -17,6 +17,7 @@
 
 ### 使用外掛技術
 - [UniRx](https://github.com/neuecc/UniRx)
+- [UniTask](https://github.com/Cysharp/UniTask)
 - [UniVRM](https://github.com/vrm-c/UniVRM)
 - [VRMLoaderUI](https://github.com/m2wasabi/VRMLoaderUI)
 

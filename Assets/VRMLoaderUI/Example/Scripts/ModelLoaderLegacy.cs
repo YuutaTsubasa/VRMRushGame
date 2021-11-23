@@ -32,7 +32,7 @@ namespace VRMLoader
         VRMBlendShapeProxy m_blendShape;
         VRMFirstPerson m_firstPerson;
 
-        public void OpenVRM()
+        public async void OpenVRM()
         {
             // 環境依存: ファイルを開く
 #if UNITY_EDITOR
@@ -45,6 +45,8 @@ namespace VRMLoader
 #elif UNITY_STANDALONE_WIN
             var path = VRM.RuntimeExporterSample.FileDialogForWindows.FileDialog("open VRM", ".vrm");
             path = "file:///" + path;
+#elif  UNITY_WEBGL
+            var path = await OpenFileDialog.Open();
 #else
             var path = Application.dataPath + "/default.vrm";
             path = "file:///" + path;

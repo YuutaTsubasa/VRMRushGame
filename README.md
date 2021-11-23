@@ -8,7 +8,8 @@
 2. [#02 設計關卡與進入關卡流程](https://yutaii.run/v/63)
 
 ## 遊玩方式
-進入網頁即可遊玩。
+- 進入[網頁](https://yuuta-tsubasa.studio/VRMRushGame/)即可點選［Load VRM］載入 VRM 模型進行遊玩。
+- Windows 版本可至 [Release 頁面](https://github.com/YuutaTsubasa/VRMRushGame/releases)下載。
 
 ## 專案說明
 

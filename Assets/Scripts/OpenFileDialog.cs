@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 namespace Yuuta.VRMGo
 {
     
-    public class OpenFileDialog : MonoBehaviour, IPointerDownHandler
+    public class OpenFileDialog : MonoBehaviour
     {
         public string Path { get; private set; }
         
@@ -17,14 +17,14 @@ namespace Yuuta.VRMGo
             var gameObject = new GameObject("OpenFileDialog");
             var openFileDialog = gameObject.AddComponent<OpenFileDialog>();
             await UniTask.WaitWhile(() => string.IsNullOrEmpty(openFileDialog.Path));
-            return openFileDialog.Path;
+            var path = openFileDialog.Path;
+            Destroy(gameObject);
+            return path;
         }
         
         void Start() {
             Application.ExternalEval(
                 @"
-document.addEventListener('click', function() {
-
     var fileuploader = document.getElementById('fileuploader');
     if (!fileuploader) {
         fileuploader = document.createElement('input');
@@ -42,26 +42,12 @@ document.addEventListener('click', function() {
             }
         };
     }
-    if (fileuploader.getAttribute('class') == 'focused') {
-        fileuploader.setAttribute('class', '');
-        fileuploader.click();
-    }
-});
+    fileuploader.click();
             ");
         }
-
-        public void OnPointerDown (PointerEventData eventData)  {
-            Application.ExternalEval(
-                @"
-var fileuploader = document.getElementById('fileuploader');
-if (fileuploader) {
-    fileuploader.setAttribute('class', 'focused');
-}
-            ");
-        }
-
+        
         public void FileDialogResult(string fileUrl) {
-            Debug.Log(fileUrl);
+            //Debug.Log(fileUrl);
             Path = fileUrl;
         }
     }

@@ -1,6 +1,6 @@
 # Unity 遊戲製作實況：悠太跑酷趣
 
-![introduce.mp4](introduce.mp4)
+![introduce.gif](introduce.gif)
 
 一個在突發實況中所成立的專案，會慢慢地增進功能來讓這個遊戲完善。
 

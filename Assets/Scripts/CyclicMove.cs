@@ -25,7 +25,7 @@ namespace Yuuta.VRMGo
                     
                     if (_IsOverLine(originalPosition, _destinationPosition))
                         _shouldGoToDestination = !_shouldGoToDestination;
-                });
+                }).AddTo(this);
         }
 
         private bool _IsOverLine(Vector3 point1, Vector3 point2)

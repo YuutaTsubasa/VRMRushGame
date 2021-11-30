@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UniGLTF;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using VRM;
@@ -31,6 +33,15 @@ namespace VRMLoader
         UniHumanoid.HumanPoseTransfer m_target;
         VRMBlendShapeProxy m_blendShape;
         VRMFirstPerson m_firstPerson;
+
+        private Subject<GameObject> _loadVRMModelSubject = new Subject<GameObject>();
+        public IObservable<GameObject> OnLoaded => _loadVRMModelSubject;
+
+        private void Start()
+        {
+            if (m_canvas == null)
+                m_canvas = transform.GetComponentInParent<Canvas>();
+        }
 
         public async void OpenVRM()
         {
@@ -100,55 +111,55 @@ namespace VRMLoader
             // load完了
             var delta = Time.time - now;
             Debug.LogFormat("LoadVrmAsync {0:0.0} seconds", delta);
-            OnLoaded(go);
+            _loadVRMModelSubject.OnNext(go);
         }
 
-        void OnLoaded(GameObject root)
-        {
-            // 設置先 hierarchy を決める
-            _character.SetModel(root);
-
-            // humanPoseTransfer 追加
-            var humanPoseTransfer = root.AddComponent<UniHumanoid.HumanPoseTransfer>();
-            if (m_target != null)
-            {
-                GameObject.Destroy(m_target.gameObject);
-            }
-            m_target = humanPoseTransfer;
-            SetupPlayer();
-        }
-
-        void SetupPlayer()
-        {
-            if (m_target != null)
-            {
-                m_blendShape = m_target.GetComponent<VRMBlendShapeProxy>();
-                // ToDo: blendShape コントローラーへの紐づけ 
-
-                m_firstPerson = m_target.GetComponent<VRMFirstPerson>();
-                m_firstPerson.Setup();
-
-                // AnimationController の紐づけ
-                var animator = m_target.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.runtimeAnimatorController = m_animationController;
-                }
-
-/*
-                // VRIKのセットアップサンプル
-                VRIK m_vrik = m_target.gameObject.AddComponent<VRIK>();
-                m_vrik.AutoDetectReferences();
-                m_vrik.solver.spine.headTarget = m_headTarget;
-                m_vrik.solver.leftArm.target = m_leftHandTarget;
-                m_vrik.solver.rightArm.target = m_rightHandTarget;
-                m_vrik.solver.leftArm.stretchCurve = new AnimationCurve();
-                m_vrik.solver.rightArm.stretchCurve = new AnimationCurve();
-                IKSolverVR.Locomotion m_vrikLoco = m_vrik.solver.locomotion;
-                m_vrikLoco.footDistance = 0.1f;
-                m_vrikLoco.stepThreshold = 0.2f;
-*/
-            }
-        }
+//       
+//         void OnLoaded(GameObject root)
+//         {
+//             // 設置先 hierarchy を決める
+//             _character.SetModel(root);
+//
+//             // humanPoseTransfer 追加
+//             var humanPoseTransfer = root.AddComponent<UniHumanoid.HumanPoseTransfer>();
+//             if (m_target != null)
+//             {
+//                 GameObject.Destroy(m_target.gameObject);
+//             }
+//             m_target = humanPoseTransfer;
+//             SetupPlayer();
+//         }
+//
+//         void SetupPlayer()
+//         {
+//             if (m_target != null)
+//             {
+//                 m_blendShape = m_target.GetComponent<VRMBlendShapeProxy>();
+//                 // ToDo: blendShape コントローラーへの紐づけ 
+//
+//                 m_firstPerson = m_target.GetComponent<VRMFirstPerson>();
+//                 m_firstPerson.Setup();
+//
+//                 // AnimationController の紐づけ
+//                 var animator = m_target.GetComponent<Animator>();
+//                 if (animator != null)
+//                 {
+//                     animator.runtimeAnimatorController = m_animationController;
+//                 }
+//
+// /*
+//                 // VRIKのセットアップサンプル
+//                 VRIK m_vrik = m_target.gameObject.AddComponent<VRIK>();
+//                 m_vrik.AutoDetectReferences();
+//                 m_vrik.solver.spine.headTarget = m_headTarget;
+//                 m_vrik.solver.leftArm.target = m_leftHandTarget;
+//                 m_vrik.solver.rightArm.target = m_rightHandTarget;
+//                 m_vrik.solver.leftArm.stretchCurve = new AnimationCurve();
+//                 m_vrik.solver.rightArm.stretchCurve = new AnimationCurve();
+//                 IKSolverVR.Locomotion m_vrikLoco = m_vrik.solver.locomotion;
+//                 m_vrikLoco.footDistance = 0.1f;
+//                 m_vrikLoco.stepThreshold = 0.2f;
+// */
+//             }
     }
 }

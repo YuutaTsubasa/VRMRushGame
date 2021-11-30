@@ -6,6 +6,7 @@
 
 1. [#01 使用 Unity 引擎試作 3D 角色行走系統](https://yutaii.run/v/57)
 2. [#02 設計關卡與進入關卡流程](https://yutaii.run/v/63)
+3. [#03 選單介面邏輯與 UI](https://yutaii.run/v/69)
 
 ## 遊玩方式
 - 進入[網頁](https://yuuta-tsubasa.studio/VRMRushGame/)即可點選［Load VRM］載入 VRM 模型進行遊玩。
@@ -21,6 +22,7 @@
 - [UniTask](https://github.com/Cysharp/UniTask)
 - [UniVRM](https://github.com/vrm-c/UniVRM)
 - [VRMLoaderUI](https://github.com/m2wasabi/VRMLoaderUI)
+- [Unity Screen Navigator](https://github.com/Haruma-K/UnityScreenNavigator)
 
 ## 作者
 - [悠太翼 @YuutaTsubasa](http://yutaii.run/twitter)

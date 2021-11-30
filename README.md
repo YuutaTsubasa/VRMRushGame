@@ -23,6 +23,7 @@
 - [UniVRM](https://github.com/vrm-c/UniVRM)
 - [VRMLoaderUI](https://github.com/m2wasabi/VRMLoaderUI)
 - [Unity Screen Navigator](https://github.com/Haruma-K/UnityScreenNavigator)
+- [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 
 ## 作者
 - [悠太翼 @YuutaTsubasa](http://yutaii.run/twitter)

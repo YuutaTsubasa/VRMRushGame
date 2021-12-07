@@ -14,6 +14,8 @@ namespace Yuuta.VRMGo
         private int _seconds = 0;
         private IDisposable _timerProcess;
 
+        public int Time => _seconds;
+
         void Start()
         {
             _UpdateText();
@@ -25,16 +27,15 @@ namespace Yuuta.VRMGo
                 }).AddTo(this);
         }
         
-        public void StopAndSave()
+        public void Stop()
         {
             _timerProcess.Dispose();
-            DataContainer.SetCurrentTime(_seconds);
         }
         
         private void _UpdateText()
         {
             _displayText.text =
-                $"Time: {DataContainer.GetTimeString(_seconds)}";
+                $"Time: {TimeUtility.GetTimeString(_seconds)}";
         }
     }
 

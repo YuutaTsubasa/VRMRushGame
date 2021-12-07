@@ -54,8 +54,6 @@ namespace Yuuta.VRMGo
         
         void Start()
         {
-            SetModel(DataContainer.GetCurrentModelObjectDuplication());
-            
             Observable.EveryUpdate()
                 .Where(_ => _camera != null && _modelGameObject != null)
                 .Subscribe(_ =>
@@ -128,7 +126,7 @@ namespace Yuuta.VRMGo
                     _characterAnimator.SetBool(GROUND_ANIMATOR_KEY, _onGround);
 
                     if (rigidBody.transform.position.y < _minY)
-                        rigidBody.transform.position = GameObject.Find("Start").transform.position;
+                        rigidBody.transform.position = StageUtility.FindStart().position;
                 }).AddTo(this);
         }
         
@@ -172,7 +170,7 @@ namespace Yuuta.VRMGo
                     transform.parent = null;
                 }).AddTo(this);
             capsuleCollider.OnCollisionEnterAsObservable()
-                .Select(collision => collision.collider.GetComponent<CharacterTriggerEvent>())
+                .Select(collision => collision.collider.GetComponent<EventCollections>())
                 .Where(triggerEvent => triggerEvent != null)
                 .Subscribe(triggerEvent => triggerEvent.Invoke()).AddTo(this);
             

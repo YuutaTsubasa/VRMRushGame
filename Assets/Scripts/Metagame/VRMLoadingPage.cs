@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,30 +15,26 @@ namespace Yuuta.VRMGo.Metagame
     {
         [SerializeField] private ModelLoaderLegacy _vrmLoader;
         [SerializeField] private Button _playButton;
-        [SerializeField] private Text _currentTimeText;
-        [SerializeField] private Text _bestTimeText;
+        [SerializeField] private Button _backButton;
         
         public override IEnumerator Initialize()
         {
-            _currentTimeText.text = DataContainer.CurrentPlayTime == DataContainer.NO_TIME
-                ? "本次遊玩紀錄：無"
-                : $"本次遊玩紀錄：{DataContainer.GetTimeString(DataContainer.CurrentPlayTime)}";
-
-            _bestTimeText.text = DataContainer.BestPlayTime == DataContainer.NO_TIME
-                ? "最佳遊玩紀錄：無"
-                : $"最佳遊玩紀錄：{DataContainer.GetTimeString(DataContainer.BestPlayTime)}";
+            var pageContainer = PageContainer.Of(transform);
             
-            _vrmLoader.OnLoaded.Subscribe(gameObject =>
+            _vrmLoader.OnLoaded.Subscribe(gameObject => UniTask.Void(async () =>
             {
                 DataContainer.SetCurrentModelObject(gameObject);
-                SceneManager.LoadScene("Scenes/Main");
-            });
+                await pageContainer.Push(MetagameRunner.STAGE_SELECT_PAGE_NAME, true);
+            })).AddTo(this);
 
             _playButton.interactable = DataContainer.HasModel;
-            _playButton.OnClickAsObservable().Subscribe(_ =>
+            _playButton.OnClickAsObservable().Subscribe(_ => UniTask.Void(async () =>
             {
-                SceneManager.LoadScene("Scenes/Main");
-            });
+                await pageContainer.Push(MetagameRunner.STAGE_SELECT_PAGE_NAME, true);
+            })).AddTo(this);
+
+            _backButton.OnClickAsObservable().Subscribe(_ => UniTask.Void(async () => 
+                    await pageContainer.Pop(true))).AddTo(this);
             
             yield break;
         }

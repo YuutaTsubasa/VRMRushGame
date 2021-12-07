@@ -27,7 +27,12 @@ namespace Yuuta.VRMGo.Metagame
                 await pageContainer.Push(MetagameRunner.STAGE_SELECT_PAGE_NAME, true);
             })).AddTo(this);
 
-            _playButton.interactable = DataContainer.HasModel;
+            _playButton.interactable = DataContainer.HasModel.Value;
+            DataContainer.HasModel.Subscribe(hasModel =>
+            {
+                _playButton.interactable = hasModel;
+            });
+            
             _playButton.OnClickAsObservable().Subscribe(_ => UniTask.Void(async () =>
             {
                 await pageContainer.Push(MetagameRunner.STAGE_SELECT_PAGE_NAME, true);

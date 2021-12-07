@@ -10,6 +10,7 @@ namespace Yuuta.VRMGo
 
         public StageInfo[] StageInfos;
         
+        #if UNITY_EDITOR
         [MenuItem("Assets/Create/Stage Info Collection")]
         public static void Generate()
         {
@@ -22,5 +23,6 @@ namespace Yuuta.VRMGo
 
             Selection.activeObject = asset;
         }
+        #endif
     }
 }

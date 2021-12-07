@@ -16,7 +16,7 @@ namespace Yuuta.VRMGo.Metagame
         
         async void Start()
         {
-            if (DataContainer.HasModel)
+            if (DataContainer.HasModel.Value)
             {
                 await _pageContainer.Push(TITLE_PAGE_NAME, false);
                 await _pageContainer.Push(VRM_LOADING_PAGE_NAME, false);

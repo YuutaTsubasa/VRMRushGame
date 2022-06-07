@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageInfos:
   - StageId: stage0
+    StageType: 0
     StagePrefabName: Stages/Stage0
   - StageId: stage1
+    StageType: 0
     StagePrefabName: Stages/Stage1
+  - StageId: stage2
+    StageType: 1
+    StagePrefabName: Stages/Stage2

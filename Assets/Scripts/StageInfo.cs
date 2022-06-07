@@ -8,6 +8,13 @@ namespace Yuuta.VRMGo
     [Serializable]
     public class StageInfo
     {
+        [Serializable]
+        public enum Type
+        {
+            Normal,
+            Autorun
+        }
+
         public const int NO_TIME = -1;
         
         private const string BEST_PLAY_TIME_KEY = "BEST_PLAY_TIME";
@@ -16,8 +23,9 @@ namespace Yuuta.VRMGo
         public int BestPlayTime => PlayerPrefs.GetInt(CurrentBestPlayTimeKey, NO_TIME);
         
         public string StageId;
+        public Type StageType;
         public string StagePrefabName;
-        
+
         public void SetCurrentPlayTime(int time)
         {
             CurrentPlayTime = time;

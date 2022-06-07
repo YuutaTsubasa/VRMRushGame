@@ -20,7 +20,16 @@ namespace Yuuta.VRMGo.Metagame
             _playButton.OnClickAsObservable().Subscribe(_ =>
             {
                 DataContainer.SetCurrentStage(stageInfo);
-                SceneManager.LoadScene("Scenes/Main");
+
+                switch (stageInfo.StageType)
+                {
+                    case StageInfo.Type.Normal:
+                        SceneManager.LoadScene("Scenes/Main");
+                        break;
+                    case StageInfo.Type.Autorun:
+                        SceneManager.LoadScene("Scenes/Autorun");
+                        break;
+                }
             });
         }
     }

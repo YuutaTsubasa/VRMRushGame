@@ -8,6 +8,7 @@
 2. [#02 設計關卡與進入關卡流程](https://yutaii.run/v/63)
 3. [#03 選單介面邏輯與 UI](https://yutaii.run/v/69)
 4. [#04 動態載入關卡](https://yutaii.run/v/74)
+5. [#05 自動跑步功能](https://yutaii.run/v/201)
 
 ## 遊玩方式
 - 進入[網頁](https://yuuta-tsubasa.studio/VRMRushGame/) 載入 VRM 模型進行遊玩。

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Yuuta.VRMGo
@@ -10,5 +11,8 @@ namespace Yuuta.VRMGo
 
         public static Transform FindFinish()
             => GameObject.Find("Finish").transform;
+
+        public static AddScoreItem[] FindAddScoreItems()
+            => GameObject.FindObjectsOfType<AddScoreItem>();
     }
 }

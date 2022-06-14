@@ -22,3 +22,6 @@ MonoBehaviour:
   - StageId: stage2
     StageType: 1
     StagePrefabName: Stages/Stage2
+  - StageId: stage3
+    StageType: 1
+    StagePrefabName: Stages/Stage3
